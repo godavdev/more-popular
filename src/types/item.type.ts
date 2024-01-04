@@ -1,5 +1,6 @@
 type Item = {
     id: number,
     name: string,
-    popularity: number
+    popularity: number,
+    photoUrl: string
 }

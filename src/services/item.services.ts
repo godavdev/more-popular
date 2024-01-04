@@ -4,7 +4,8 @@ export const createItem = async (item: Omit<Item, 'id'>) => {
     return await prisma.item.create({
         data: {
             name: item.name,
-            popularity: item.popularity
+            popularity: item.popularity,
+            photoUrl: item.photoUrl
         }
     })
 }
