@@ -7,7 +7,7 @@ const Game = ({ items }: { items: Item[] }) => {
     const [leftItem, setLeftItem] = useState<Item>(items[0])
     const [rightItem, setRigthItem] = useState<Item>(items[1])
 
-    //logica de la aplicacion
+    //Game Logic
     const handleElection = (election: 'left' | 'right') => {
         if (election === 'left') {
             if (leftItem.popularity >= rightItem.popularity) {
