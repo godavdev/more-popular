@@ -1,5 +1,5 @@
 import { items } from '@/DummyData'
-import Game from '@/components/Item/Game/Game'
+import Game from '@/components/Game/Game'
 import Item from '@/components/Item/Item'
 import React from 'react'
 

@@ -1,18 +1,23 @@
 "use client"
-import React, { useState } from 'react'
-import Item from '../Item'
+import React, { useEffect, useState } from 'react'
+import Item from '../Item/Item'
+import { useRouter } from 'next/navigation'
 
 const Game = ({ items }: { items: Item[] }) => {
+    const router = useRouter()
 
     const [leftItem, setLeftItem] = useState<Item>(items[0])
     const [rightItem, setRigthItem] = useState<Item>(items[1])
-
+    useEffect(() => {
+        router.prefetch(leftItem.id > rightItem.id ? items[leftItem.id + 1].photoUrl : items[rightItem.id + 1].photoUrl)
+        console.log(`prefetching ${leftItem.id > rightItem.id ? items[leftItem.id + 1].photoUrl : items[rightItem.id + 1].photoUrl}`)
+    }, [leftItem, rightItem])
     //Game Logic
     const handleElection = (election: 'left' | 'right') => {
         if (election === 'left') {
             if (leftItem.popularity >= rightItem.popularity) {
                 const id = leftItem.id > rightItem.id ? leftItem.id : rightItem.id
-                setRigthItem(items[id + 1])
+                setRigthItem({ ...items[id + 1] })
             } else {
                 console.log('Loser')
             }
@@ -20,7 +25,7 @@ const Game = ({ items }: { items: Item[] }) => {
         if (election === 'right') {
             if (rightItem.popularity >= leftItem.popularity) {
                 const id = leftItem.id > rightItem.id ? leftItem.id : rightItem.id
-                setLeftItem(items[id + 1])
+                setLeftItem({ ...items[id + 1] })
             } else {
                 console.log('Loser')
             }
